@@ -4,6 +4,15 @@
 // that manipulates variables defined in the outer scope.
 // The outer scope can be a parent function, or the top level of the script.
 
+let passed = 3; 
+
+let addTo = (x) => {
+	let inner = 2;
+	return passed + x; 
+};
+
+console.log(addTo(10));\
+
 
 /* STRETCH PROBLEMS, Do not attempt until you have completed all previous tasks for today's project files */
 
@@ -16,8 +25,15 @@ const counterMaker = () => {
   //      NOTE: This `counter` function, being nested inside `counterMaker`,
   //      "closes over" the `count` variable. It can "see" it in the parent scope!
   // 3- Return the `counter` function.
+  let count = 0;
+  let counter = () => {
+  	return count++; 
+  };
+  return counter;
 };
 // Example usage: const myCounter = counterMaker();
+const myCounter = counterMaker();
+ console.log(myCounter()); // 1
 // myCounter(); // 1
 // myCounter(); // 2
 
@@ -27,6 +43,7 @@ const counterMaker = () => {
 
 // ==== Challenge 4: Create a counter function with an object that can increment and decrement ====
 const counterFactory = () => {
+	
   // Return an object that has two methods called `increment` and `decrement`.
   // `increment` should increment a counter variable in closure scope and return it.
   // `decrement` should decrement the counter variable and return it.
